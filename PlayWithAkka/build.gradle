@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+}
+
+group 'org.akka'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def versions = [
+        ScalaBinary: "2.12"
+]
+
+dependencies {
+    implementation platform("com.typesafe.akka:akka-bom_${versions.ScalaBinary}:2.7.0")
+
+    implementation "com.typesafe.akka:akka-actor_${versions.ScalaBinary}"
+    testImplementation "com.typesafe.akka:akka-testkit_${versions.ScalaBinary}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
